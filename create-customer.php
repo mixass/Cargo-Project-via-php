@@ -19,12 +19,12 @@ function database(){
     $default_status = "Received";
     if (isset($_POST["name-surname"])){
         $link = mysqli_connect("localhost", "root", "12345678", "mixas");
-
-        $sql = "INSERT INTO test (trackingno, namesurname, phone, ip, adress, staff, time,status) VALUES ('$trackingno', '$namesurname','$phone', '$ip','$adress', '$staff','$time','$default_status')";
+        
+        $sql = "INSERT INTO cargolist (trackingno, namesurname, phone, ip, adress, staff, time,status) VALUES ('$trackingno', '$namesurname','$phone', '$ip','$adress', '$staff','$time','$default_status')";
         if(mysqli_query($link, $sql)){
             //echo "Records inserted successfully.";
         } else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+            warn("ERROR: Could not able to execute $sql. " . mysqli_error($link));
         }
         
         mysqli_close($link);
@@ -34,6 +34,7 @@ function database(){
 function warn($a) {  
     echo "<span style='color:rgb(218, 52, 52);'>$a</span>";
 }
+
 ?>
 <html><body >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
