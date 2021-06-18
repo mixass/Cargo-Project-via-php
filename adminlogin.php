@@ -8,7 +8,7 @@ if (isset($_POST['username'])) {
     $_SESSION["login"] = "false";
     if ($username == $admin and $password == $a_password){
         $_SESSION["login"] = "true";
-        header("Location: admin.php");
+        header("Location: create-customer.php");
     }else {
         warn("Login failed");
     }
