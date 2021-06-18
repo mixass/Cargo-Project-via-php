@@ -1,6 +1,6 @@
 <?php
 session_start();
- 
+date_default_timezone_set('Europe/Istanbul');
 if(!isset($_SESSION["login"])){
     header("Location:index.php");
 }
@@ -8,19 +8,21 @@ else {
     database();
 }
 
-
 function database(){
     $namesurname = $_POST["name-surname"];
+    $phone = $_POST["phone"];
     $adress = $_POST["address"];
     $trackingno = $_POST["tracking-no"];
     $staff = $_POST["staff"];
-    
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $time = date("d/m/Y");
+    $default_status = "Received";
     if (isset($_POST["name-surname"])){
         $link = mysqli_connect("localhost", "root", "12345678", "mixas");
 
-        $sql = "INSERT INTO test (trackingno, namesurname, adress, staff) VALUES ('$trackingno', '$namesurname', '$adress', '$staff')";
+        $sql = "INSERT INTO test (trackingno, namesurname, phone, ip, adress, staff, time,status) VALUES ('$trackingno', '$namesurname','$phone', '$ip','$adress', '$staff','$time','$default_status')";
         if(mysqli_query($link, $sql)){
-            echo "Records inserted successfully.";
+            //echo "Records inserted successfully.";
         } else{
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
         }
@@ -40,8 +42,9 @@ function warn($a) {
         <form method = "POST">
             <div class="login">
                 Customer Name-Surname <br> <input class="inp" type="text" name = "name-surname" autocomplete="off" required="on"><br><br>
-                Address <br> <input class="inp" type="text" name = "address" autocomplete="off" required="on"><br><br>
-                Tracking No <br> <input class="inp" type="text" name = "tracking-no" autocomplete="off" required="on"><br><br>
+                Phone <br> <input class="inp" type="number" name = "phone" autocomplete="off" required="on"><br><br>
+                Address <br> <textarea class="inp" name = "address" autocomplete="off" required="on" rows="10" cols="20"></textarea><br><br>
+                Tracking No <br> <input class="inp" type="number" name = "tracking-no" autocomplete="off" required="on"><br><br>
                 Staff <br> <input class="inp" type="text" name = "staff" autocomplete="off" required="on"><br><br>
             </div>
             <button class="btn btn-outline-light" type= "submit"> Create</button>
