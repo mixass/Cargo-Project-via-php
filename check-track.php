@@ -3,11 +3,15 @@
 
     $link = mysqli_connect("localhost", "root", "12345678", "mixas");
     $trackingno = $_POST["tracking-no"];
-    $sql = "SELECT * FROM cargolist WHERE trackingno='$trackingno';";		 
-    $result = $link->query($sql);
+    $trackinggno = $_POST["trackingg-no"];
+    $phone = $_POST["phone-no"];
+
+    // Check track
+    $checktracking = "SELECT * FROM cargolist WHERE trackingno='$trackingno';";		 
+    $result = $link->query($checktracking);
     if(isset($trackingno)) {
         while($row = $result->fetch_assoc()) { 
-            success($row["status"]);
+            success($row["status"].'<br>'.$row["namesurname"]);
         }
     }
 
@@ -17,8 +21,8 @@
         echo "<span style='color:rgb(218, 52, 52);'>$a</span>";
     }
 
-    function success($message) {  
-        echo "<span style='color:rgb(27, 223, 18);'>$message</span>";
+    function success($status) {  
+        echo "<span style='color:rgb(27, 223, 18);'>$status</span>";
     }
 ?>
 <html><body>
@@ -40,15 +44,10 @@
             <div class="login">
                 <hr>
                     <a class='check'>Check Track Status </a><br><br>
-                    <input class="inp" type="text" name = "tracking-no" autocomplete="off" placeholder="Tracking No" required="on"><br><br>
+                    <input class="inp" type="text" name = "tracking-no" autocomplete="off" placeholder="Tracking No"><br><br>
                     <button class="btn btn-outline-success" type= "submit"><i class="fa fa-search"></i></button>
                 <hr>
-                <a class='check'>Change Cargo Address </a><br><br>
-                    <input class="inp" type="number" name = "phone-no" autocomplete="off" placeholder="Phone Number" required="on"><br><br>
-                    <input class="inp" type="number" name = "tracking-no" autocomplete="off" placeholder="Tracking No" required="on"><br><br>
-                    New Address <br> <textarea class="inp" name = "address" autocomplete="off" required="on" rows="10" cols="20"></textarea><br><br>
-                    <button class="btn btn-success" type= "submit">Change Cargo Address</button>
-                <hr>
+
             </div>
         </form>
 </body></html>
