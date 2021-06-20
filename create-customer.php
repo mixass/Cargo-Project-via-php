@@ -18,19 +18,32 @@ function database(){
     $time = date("d/m/Y");
     $default_status = "Received";
     if (isset($_POST["name-surname"])){
-        $link = mysqli_connect("localhost", "root", "12345678", "mixas");
-        
-        $sql = "INSERT INTO cargolist (trackingno, namesurname, phone, ip, adress, staff, time,status) VALUES ('$trackingno', '$namesurname','$phone', '$ip','$adress', '$staff','$time','$default_status')";
-        if(mysqli_query($link, $sql)){
-            //echo "Records inserted successfully.";
-        } else{
-            warn("ERROR: Could not able to execute $sql. " . mysqli_error($link));
-        }
-        
-        mysqli_close($link);
-
+        Check($trackingno, $namesurname, $phone, $ip, $adress, $staff, $time, $default_status);
     }
 }
+
+
+function Check($trackingno, $namesurname, $phone, $ip, $adress, $staff, $time, $default_status){
+    $link = mysqli_connect("localhost", "root", "12345678", "mixas");
+    $checkTrackno = "SELECT * FROM cargolist WHERE trackingno='$trackingno';";
+    $result = mysqli_query($link, $checkTrackno);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            warn("This cargo number already exists");
+        }
+      } else {
+        createCustomer($trackingno, $namesurname, $phone, $ip, $adress, $staff, $time, $default_status);
+    }
+    mysqli_close($link);
+}
+
+function createCustomer($trackingno, $namesurname, $phone, $ip, $adress, $staff, $time, $default_status){
+    $link = mysqli_connect("localhost", "root", "12345678", "mixas");
+    $sql = "INSERT INTO cargolist (trackingno, namesurname, phone, ip, adress, staff, time,status) VALUES ('$trackingno', '$namesurname','$phone', '$ip','$adress', '$staff','$time','$default_status')";
+    mysqli_query($link, $sql);
+    mysqli_close($link);
+}
+
 function warn($a) {  
     echo "<span style='color:rgb(218, 52, 52);'>$a</span>";
 }
