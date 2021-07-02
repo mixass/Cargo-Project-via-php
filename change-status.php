@@ -13,7 +13,7 @@
     $setstatus = "UPDATE cargolist SET status='$status' WHERE trackingno='$trackingno';";		 
     if(isset($trackingno)) {
         if(mysqli_query($link, $setstatus)){
-            echo "Records inserted successfully.";
+            //echo "Records inserted successfully.";
         } else{
             warn("ERROR: Could not able to execute $sql. " . mysqli_error($link));
         }
