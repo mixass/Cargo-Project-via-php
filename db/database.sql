@@ -11,12 +11,3 @@ CREATE TABLE IF NOT EXISTS `cargolist` (
   `time` text,
   `status` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE IF NOT EXISTS `change-address-log` (
-  `phoneno` text,
-  `trackingno` text,
-  `oldaddres` text,
-  `newaddres` text,
-  `time` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
