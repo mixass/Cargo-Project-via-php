@@ -18,17 +18,28 @@
         $sql = mysqli_connect("localhost", "root", "12345678", "mixas");
         $checkServer = "SELECT * FROM cargolist;";
         $result = mysqli_query($sql, $checkServer);
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                if ($_POST['status'] == $row['status']) {
-                    echo "<center><h3 class='clist'>";
-                    echo "Tracking NO : ".$row['trackingno']." Name Surname : ".$row['namesurname']." Phone : ".$row['phone']." Address : ".$row['adress'];
-                    echo "</h3><hr></center>";                
+        $status = $_POST['status'];
+        if (isset($status)) {
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    if ($status == $row['status']) {
+                        echo "<center><h3 class='clist'>";
+                        echo "Tracking NO : ".$row['trackingno']." Name Surname : ".$row['namesurname']." Phone : ".$row['phone']." Address : ".$row['adress'];
+                        echo "</h3><hr></center>";
+                    } 
                 }
-
             }
-          }
+        }else {
+            TotalCargoNumber();
+        }
+
         mysqli_close($sql);
+    }
+    function TotalCargoNumber(){
+        $conn = mysqli_connect("localhost", "root", "12345678", "mixas");
+        $TotalCargoSql = "SELECT * FROM cargolist;";
+        $result = mysqli_query($conn, $TotalCargoSql)->num_rows;
+        echo "<br><br><h1 style='color:whitesmoke;'>Total Cargo Number<br>$result</h1>";
     }
 ?>
 <html><body>

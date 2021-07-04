@@ -3,6 +3,8 @@
             <a href="create-customer.php">Create Customer</a>
             <a class="active" href="change-status.php">Change Status</a>
             <a href="announce.php">Customer Announce</a>
+            <a href="cargolist.php">Cargo List</a>
+
 </div>
 <?php
     session_start();

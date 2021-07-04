@@ -1,8 +1,9 @@
 <div class="topnav">
-            <a href="admin.php">Home</a>
+            <a href="index.php">Home</a>
             <a href="create-customer.php">Create Customer</a>
             <a href="change-status.php">Change Status</a>
             <a  class="active" href="announce.php">Customer Announce</a>
+            <a href="cargolist.php">Cargo List</a>
 </div>
 <?php
     session_start();
@@ -13,14 +14,14 @@
        currentannounce();
     }
     function currentannounce(){
-        $announce = file_get_contents('announce.txt');
+        $announce = file_get_contents('announces/customer-announce.txt');
         echo "<h3 class='welcome'><br>";
         echo "Currently Announce<br><hr style='color:white;height:4px'><br>";
         echo "<h3 class='announce'>$announce</h3>";
         echo "</h3><br><hr style='color:white;height:4px'>";
     }
     if (isset($_POST['announce-text'])) {
-        $dosya = fopen('announce.txt','w');
+        $dosya = fopen('announces/customer-announce.txt','w');
         fwrite($dosya,$_POST['announce-text']);
         fclose($dosya);
         sleep(0.5);
