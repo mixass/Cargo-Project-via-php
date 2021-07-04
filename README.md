@@ -1,4 +1,4 @@
-<h1>Hello 👋,</h1><br>
+<h1>Hello 👋</h1><br>
 Simple Cargo project via php , i made to improve myself<br>
 
 <h1>Features for staffs/admins</h1><br>
