@@ -1,3 +1,8 @@
+<div class="topnav">
+    <a href="index.php">Home</a>
+    <a class = "active" href="check-track.php">Check Track</a>
+    <a href="adminlogin.php">Admin Panel</a>
+</div>
 <?php
     session_start();
 

@@ -1,3 +1,8 @@
+<div class="topnav">
+    <a href="index.php">Home</a>
+    <a href="check-track.php">Check Track</a>
+    <a class = "active" href="adminlogin.php">Admin Panel</a>
+</div>
 <?php
 session_start();
 if (isset($_POST['username'])) {
@@ -8,7 +13,7 @@ if (isset($_POST['username'])) {
     $_SESSION["login"] = "false";
     if ($username == $admin and $password == $a_password){
         $_SESSION["login"] = "true";
-        header("Location: create-customer.php");
+        adminpage();
     }else {
         warn("Login failed");
     }
@@ -18,7 +23,9 @@ function warn($message) {
     echo "<span style='color:rgb(218, 52, 52);'>$message</span>";
 }
 
-
+function adminpage(){
+    echo "<script>window.location = 'http://localhost/Cargo/admin/' </script>";
+}
 ?>
 <html><body onselectstart="return false">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
