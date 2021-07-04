@@ -19,7 +19,7 @@ Simple Cargo project via php , i made to improve myself<br>
 <img src="https://github.com/mixass/Cargo-Project-via-php/blob/main/Images/admin-panel.png"><br>
 
 <h1>Change Cargo Status</h1><br>
-<img src="https://raw.githubusercontent.com/mixass/Cargo-Project-via-php/main/Images/admin/admin-change-status.png"><br>
+<img src="https://github.com/mixass/Cargo-Project-via-php/blob/main/Images/admin/admin-change-status.png?raw=true"><br>
 
 <h1>CargoList</h1><br>
 <img src="https://github.com/mixass/Cargo-Project-via-php/blob/main/Images/admin/cargo-list.png"><br>
